@@ -27,8 +27,8 @@ header {
 }
 
 .current-weather-icon {
-  font-size: 25px;
   padding: 10px;
+  max-width: 40%;
 }
 
 .fa-user-cog,
@@ -40,9 +40,9 @@ header {
 
 .fa-search {
   position: relative;
-  left: -7px;
+  left: -10px;
   top: 3px;
-  color: #000;
+  color: #525252;
 }
 
 .search {
@@ -55,7 +55,7 @@ header {
   font-size: 16px;
   font-weight: 300;
   letter-spacing: 2px;
-  border: none;
+  border: 3px solid #adb5bd;
   border-radius: 5px;
   transition: all 0.4s ease-in-out;
   outline: none;
@@ -167,6 +167,7 @@ footer {
 
 .fa-heart {
   color: #c71585;
+  padding: 5px;
 }
 
 .linkedin-link {
@@ -197,11 +198,15 @@ footer {
     );
   }
   .container {
-    padding: 20px 150px;
+    padding: 20px 100px;
   }
 
   .search:focus {
     width: 250px;
+  }
+
+  .current-weather-icon {
+    padding: 20px;
   }
 
   .current-weather {
@@ -218,14 +223,15 @@ footer {
     background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
   }
   .container {
-    padding: 60px 250px 0;
+    padding: 60px 250px;
+  }
+
+  .current-weather-icon {
+    padding: 10px;
+    width: 15%;
   }
 
   .search:focus {
     width: 350px;
-  }
-
-  footer {
-    padding-bottom: 30px;
   }
 }

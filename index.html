@@ -13,6 +13,7 @@
       src="https://kit.fontawesome.com/e700361c1b.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
@@ -31,8 +32,12 @@
       </header>
       <main>
         <section class="current-weather">
-          <i class="fas fa-cloud current-weather-icon"></i>
-          <h2 class="current-weather-desc">Cloudy</h2>
+          <img
+            src="http://openweathermap.org/img/wn/04d@2x.png"
+            alt="Current weather icon"
+            class="current-weather-icon"
+          />
+          <h2 class="current-weather-desc">Clouds</h2>
           <h3 class="city city-update">Madrid, Spain</h3>
           <h3 class="current-date"></h3>
           <h3 class="current-temp">
@@ -84,9 +89,7 @@
       </main>
       <footer>
         <small class="copyright"
-          >Coded with <i class="far fa-heart"></i>
-
-          by
+          >Coded with <i class="far fa-heart"></i>by
           <a
             class="linkedin-link"
             href="https://www.linkedin.com/in/alessia-maschio-a8317734/"
