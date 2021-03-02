@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App - A. Maschio</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/e700361c1b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <i class="fas fa-user-cog"></i>
+        <form id="search-form">
+          <input
+            type="text"
+            class="search"
+            placeholder="Search..."
+            autocomplete="off"
+            autofocus="on"
+          /><i class="fas fa-search"></i>
+        </form>
+      </header>
+      <main>
+        <section class="current-weather">
+          <i class="fas fa-cloud current-weather-icon"></i>
+          <h2 class="current-weather-desc">Cloudy</h2>
+          <h3 class="city city-update">Madrid, Spain</h3>
+          <h3 class="current-date"></h3>
+          <h3 class="current-temp">
+            <span class="temp">11</span><a href="#" id="celsius">°C</a
+            ><span class="vertical-line"></span
+            ><a href="#" id="fahrenheit">°F</a>
+          </h3>
+          <h4 class="min-max-temp">8° / 16°</h4>
+        </section>
+        <section>
+          <ul class="main-list">
+            <li>
+              <ul class="sub-list">
+                <li>Tue</li>
+                <li><i class="fas fa-cloud"></i></li>
+                <li>15°</li>
+              </ul>
+            </li>
+            <li>
+              <ul class="sub-list">
+                <li>Wed</li>
+                <li><i class="fas fa-cloud-sun"></i></li>
+                <li>18°</li>
+              </ul>
+            </li>
+            <li>
+              <ul class="sub-list">
+                <li>Thu</li>
+                <li><i class="fas fa-smog"></i></li>
+                <li>16°</li>
+              </ul>
+            </li>
+            <li>
+              <ul class="sub-list">
+                <li>Fri</li>
+                <li><i class="fas fa-cloud-sun"></i></li>
+                <li>16°</li>
+              </ul>
+            </li>
+            <li>
+              <ul class="sub-list">
+                <li>Sat</li>
+                <li><i class="fas fa-cloud"></i></li>
+                <li>12°</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer>
+        <small class="copyright"
+          >Coded with <i class="far fa-heart"></i>
+
+          by
+          <a
+            class="linkedin-link"
+            href="https://www.linkedin.com/in/alessia-maschio-a8317734/"
+            target="_blank"
+            >Alessia</a
+          >
+          &copy;2021</small
+        >
+      </footer>
+    </div>
+    <script src="./src/index.js"></script>
+  </body>
+</html>
