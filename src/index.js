@@ -31,7 +31,7 @@ function displayCity(response) {
   let iconCode = response.data.weather[0].icon;
     let icon = weatherIcon.setAttribute(
       `src`,
-      `http://openweathermap.org/img/wn/${iconCode}@2x.png`
+      `https://openweathermap.org/img/wn/${iconCode}@2x.png`
     );
   weatherIcon.innerHTML = `${icon}`;
   
