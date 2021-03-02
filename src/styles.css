@@ -160,9 +160,15 @@ footer {
   padding-top: 40px;
 }
 
-.copyright {
+.copyright,
+.git-hub {
   text-transform: uppercase;
   font-size: 12px;
+}
+
+.git-hub {
+  display: block;
+  padding-top: 10px;
 }
 
 .fa-heart {
@@ -170,21 +176,26 @@ footer {
   padding: 5px;
 }
 
-.linkedin-link {
+.linkedin-link,
+.git-hub-link {
   text-decoration: none;
   color: #c71585;
+  font-weight: 500;
 }
 
-.linkedin-link:hover {
+.linkedin-link:hover,
+.git-hub-link:hover {
   text-decoration: underline;
 }
 
-.linkedin-link:visited {
+.linkedin-link:visited,
+.git-hub-link:visited {
   opacity: 0.3;
-  color: #000;
+  color: #170d7d;
 }
 
-.linkedin-link:active {
+.linkedin-link:active,
+.git-hub-link:active {
   color: #ba55d3;
 }
 
