@@ -145,3 +145,28 @@ let weatherDescription = document.querySelector(".current-weather-desc");
 let weatherIcon = document.querySelector(".current-weather-icon");
 
 navigator.geolocation.getCurrentPosition(handlePosition);
+
+function showMenu() {
+  let dropdownList = document.querySelector("#myDropdown");
+  dropdownList.classList.toggle("show");
+ 
+
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches(".fa-user-cog")) {
+    let dropdowns = document.getElementsByClassName("dropdown-content");
+    
+   let i;
+    for (i = 0; i < dropdowns.length; i++) {
+     let openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains("show")) {
+        openDropdown.classList.remove("show");
+       
+      }
+    }
+  }
+}
+
+let settingsButton = document.querySelector(".fa-user-cog");
+settingsButton.addEventListener("click", showMenu);
