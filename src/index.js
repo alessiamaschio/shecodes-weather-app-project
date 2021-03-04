@@ -203,22 +203,20 @@ function changeIcon(newIcon) {
       let lightningIcon = document.querySelector(".copyright");
 lightningIcon.addEventListener("mouseleave", resetIcon);
       
-function getRandomHEXColor() {
-  const SEED = '0123456789abcdef';
-  let output = '#';
-  while (output.length < 7) {
-    output += SEED[Math.floor(Math.random() * SEED.length)];
-  }
-  return output;
+
+function getPastelColor() {
+  let hue = Math.floor(Math.random() * 12 * 30);
+  let randomColor = `hsl(${hue}, 70%, 80%)`;
+  return randomColor;
 }
 
-function generateRandomColor() {
-  body.style.background = `linear-gradient(to top,${getRandomHEXColor()},${getRandomHEXColor()})`;
+function generateRandomGradient() {
+  body.style.background = `linear-gradient(to top,${getPastelColor()},${getPastelColor()})`;
 
 }
 
 
 let randomBackground = document.querySelector("#random-background-color");
-randomBackground.addEventListener("click", generateRandomColor);
+randomBackground.addEventListener("click", generateRandomGradient);
 
-const body = document.getElementsByTagName('BODY')[0];
+let body = document.querySelector("body");
