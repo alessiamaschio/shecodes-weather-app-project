@@ -150,14 +150,14 @@ header {
   font-size: 30px;
 }
 
-#celsius,
+/* #celsius,
 #fahrenheit {
   text-decoration: none;
   font-size: 20px;
   color: #525252;
-}
+} */
 
-#celsius {
+/* #celsius {
   padding-right: 15px;
 }
 
@@ -181,7 +181,7 @@ header {
 #fahrenheit:hover {
   font-size: 25px;
   opacity: 0.5;
-}
+} */
 
 .min-max-temp {
   font-weight: normal;

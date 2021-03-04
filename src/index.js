@@ -40,8 +40,9 @@ function displayCity(response) {
 
 function displayTemperature(response) {
  
-    let currentTemp = Math.round(response.data.main.temp);
-    return (temp.innerHTML = `${currentTemp}`);
+  let currentTemp = Math.round(response.data.main.temp);
+ 
+    return (temp.innerHTML = `${currentTemp}°`);
   
 }
 
@@ -73,8 +74,6 @@ function searchCity(event) {
    axios.get(url).then(displayTemperature);
   axios.get(url).then(displayMinMaxTemp);
 
-
-  
   }
 }
 
@@ -96,8 +95,6 @@ function searchCityEnter(event) {
     axios.get(url).then(displayCity);
     axios.get(url).then(displayTemperature);
     axios.get(url).then(displayMinMaxTemp);
-  
-  
     }
   }
 }
@@ -118,6 +115,7 @@ function fahrenheitConverter() {
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${apiKey}&units=${units}`;
   axios.get(url).then(displayTemperature);
   axios.get(url).then(displayMinMaxTemp);
+   
   
 }
 
@@ -127,6 +125,7 @@ function celsiusConverter() {
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${apiKey}&units=${units}`;
   axios.get(url).then(displayTemperature);
   axios.get(url).then(displayMinMaxTemp);
+    
   
 }
 
@@ -202,7 +201,24 @@ function changeIcon(newIcon) {
       loveIcon.addEventListener("mouseenter", changeIcon);
 
       let lightningIcon = document.querySelector(".copyright");
-      lightningIcon.addEventListener("mouseleave", resetIcon);
+lightningIcon.addEventListener("mouseleave", resetIcon);
+      
+function getRandomHEXColor() {
+  const SEED = '0123456789abcdef';
+  let output = '#';
+  while (output.length < 7) {
+    output += SEED[Math.floor(Math.random() * SEED.length)];
+  }
+  return output;
+}
+
+function generateRandomColor() {
+  body.style.background = `linear-gradient(to top,${getRandomHEXColor()},${getRandomHEXColor()})`;
+
+}
 
 
+let randomBackground = document.querySelector("#random-background-color");
+randomBackground.addEventListener("click", generateRandomColor);
 
+const body = document.getElementsByTagName('BODY')[0];
