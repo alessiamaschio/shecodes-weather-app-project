@@ -149,12 +149,12 @@ navigator.geolocation.getCurrentPosition(handlePosition);
 function showMenu() {
   let dropdownList = document.querySelector("#myDropdown");
   dropdownList.classList.toggle("show");
- 
+  settingsButton.classList.toggle("change");
 
 }
 
 window.onclick = function(event) {
-  if (!event.target.matches(".fa-user-cog")) {
+  if (!event.target.matches(".settings-container")) {
     let dropdowns = document.getElementsByClassName("dropdown-content");
     
    let i;
@@ -162,11 +162,17 @@ window.onclick = function(event) {
      let openDropdown = dropdowns[i];
       if (openDropdown.classList.contains("show")) {
         openDropdown.classList.remove("show");
+  settingsButton.classList.remove("change");
+       
        
       }
     }
   }
 }
 
-let settingsButton = document.querySelector(".fa-user-cog");
+
+let settingsButton = document.querySelector(".settings-container");
 settingsButton.addEventListener("click", showMenu);
+
+
+
