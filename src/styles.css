@@ -237,6 +237,11 @@ footer {
   padding: 5px;
 }
 
+.fa-bolt {
+  padding: 5px;
+  color: yellow;
+}
+
 .linkedin-link,
 .git-hub-link {
   text-decoration: none;

@@ -174,5 +174,35 @@ window.onclick = function(event) {
 let settingsButton = document.querySelector(".settings-container");
 settingsButton.addEventListener("click", showMenu);
 
+function changeIcon(newIcon) {
+        let icon = document.querySelector(".copyright");
+        icon.innerHTML = newIcon;
+        changeIcon(`Coded with <i class="fas fa-bolt"></i>
+
+          by
+          <a href="https://www.linkedin.com/in/alessia-maschio-a8317734/"
+            >Alessia</a
+          >
+          &copy;2021`);
+      }
+
+      function resetIcon(newIcon) {
+        let icon = document.querySelector(".copyright");
+        icon.innerHTML = newIcon;
+        resetIcon(`Coded with <i class="fas fa-heart"></i>
+
+          by
+          <a href="https://www.linkedin.com/in/alessia-maschio-a8317734/"
+            >Alessia</a
+          >
+          &copy;2021`);
+}
+      
+     let loveIcon = document.querySelector(".copyright");
+      loveIcon.addEventListener("mouseenter", changeIcon);
+
+      let lightningIcon = document.querySelector(".copyright");
+      lightningIcon.addEventListener("mouseleave", resetIcon);
+
 
 
