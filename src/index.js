@@ -147,7 +147,7 @@ let weatherIcon = document.querySelector(".current-weather-icon");
 navigator.geolocation.getCurrentPosition(handlePosition);
 
 function showMenu() {
-  let dropdownList = document.querySelector("#myDropdown");
+  let dropdownList = document.querySelector("#my-dropdown");
   dropdownList.classList.toggle("show");
   settingsButton.classList.toggle("change");
 

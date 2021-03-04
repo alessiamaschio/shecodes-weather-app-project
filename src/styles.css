@@ -31,13 +31,12 @@ header {
 .bar3 {
   width: 35px;
   height: 5px;
-  background-color: #333;
+  background-color: #555;
   margin: 6px 0;
   transition: 0.4s;
 }
 
 .change .bar1 {
-  /* -webkit-transform: rotate(-45deg) translate(-9px, 6px); */
   transform: rotate(-45deg) translate(-9px, 6px);
 }
 
@@ -46,7 +45,6 @@ header {
 }
 
 .change .bar3 {
-  /* -webkit-transform: rotate(45deg) translate(-8px, -8px); */
   transform: rotate(45deg) translate(-8px, -8px);
 }
 
@@ -60,10 +58,6 @@ header {
   max-width: 40%;
 }
 
-.fa-user-cog {
-  cursor: pointer;
-}
-
 .dropdown {
   position: relative;
   display: inline-block;
@@ -72,29 +66,31 @@ header {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: rgb(255, 255, 255);
   min-width: 160px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  border-radius: 5px;
 }
 
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
+  color: #333;
+  padding: 12px;
   text-decoration: none;
   display: block;
+  font-size: 14px;
+  max-height: 60px;
 }
 
 .dropdown a:hover {
-  background-color: #ddd;
+  background-color: #e2ebf0;
 }
 
 .show {
   display: block;
 }
-
-.fa-user-cog,
+.settings-container,
 .fa-search {
   padding: 10px 0;
   font-size: 20px;
@@ -199,13 +195,15 @@ header {
 
 .main-list {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* justify-content: space-around; */
   padding: 40px 10px;
 }
 
 .sub-list {
   line-height: 2;
   text-align: center;
+  padding-bottom: 20px;
 }
 
 .sub-list:first-child {
@@ -272,7 +270,11 @@ footer {
     );
   }
   .container {
-    padding: 20px 100px;
+    padding: 20px 60px;
+  }
+
+  .dropdown a:hover {
+    background-color: #f3e7e9;
   }
 
   .search:focus {
@@ -286,7 +288,17 @@ footer {
   .current-weather {
     padding: 20px;
   }
+  .main-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 40px 10px;
+  }
 
+  .sub-list {
+    line-height: 2;
+    text-align: center;
+  }
   footer {
     padding-top: 70px;
   }
@@ -298,6 +310,10 @@ footer {
   }
   .container {
     padding: 60px 250px;
+  }
+
+  .dropdown a:hover {
+    background-color: #fbc2eb;
   }
 
   .current-weather-icon {
