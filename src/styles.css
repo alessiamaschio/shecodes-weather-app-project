@@ -76,7 +76,7 @@ header {
 
 .dropdown-link {
   color: #333;
-  padding: 12px;
+  padding: 10px;
   text-decoration: none;
   display: block;
   font-size: 14px;
@@ -85,6 +85,22 @@ header {
 
 .dropdown-link:hover {
   background-color: #e2ebf0;
+}
+
+img {
+  width: 20px;
+  position: relative;
+  top: 5px;
+}
+
+.background-color-icon {
+  top: -5px;
+  width: 22px;
+}
+
+.email-icon {
+  left: 25px;
+  width: 22px;
 }
 
 .show {
@@ -150,6 +166,17 @@ header {
   font-size: 30px;
 }
 
+.show-unit {
+  display: inline;
+}
+
+.hide {
+  display: none;
+}
+
+#fahrenheit-symbol {
+  margin-left: -20px;
+}
 /* #celsius,
 #fahrenheit {
   text-decoration: none;
