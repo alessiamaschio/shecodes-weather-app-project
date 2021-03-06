@@ -22,12 +22,12 @@ function handlePosition(position) {
   let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
   let units = `metric`;
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-  axios.get(url).then(displayCity);
+  axios.get(url).then(displayCurrentData);
   axios.get(url).then(displayTemperature);
   axios.get(url).then(displayMinMaxTemp);
 }
 
-function displayCity(response) {
+function displayCurrentData(response) {
   let city = response.data.name;
   cityUpdate.innerHTML = `${city}`;
 
@@ -70,9 +70,10 @@ function searchCity(event) {
       let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
       let units = `metric`;
       let url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${apiKey}&units=${units}`;
-      axios.get(url).then(displayCity);
+      axios.get(url).then(displayCurrentData);
       axios.get(url).then(displayTemperature);
-      axios.get(url).then(displayMinMaxTemp);
+    axios.get(url).then(displayMinMaxTemp);
+        celsiusConverter();
   }
 }
 
@@ -89,9 +90,10 @@ function searchCityEnter(event) {
        let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
         let units = `metric`;
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${apiKey}&units=${units}`;
-        axios.get(url).then(displayCity);
+        axios.get(url).then(displayCurrentData);
         axios.get(url).then(displayTemperature);
-        axios.get(url).then(displayMinMaxTemp);
+      axios.get(url).then(displayMinMaxTemp);
+      celsiusConverter();
     }
   }
 }
