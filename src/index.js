@@ -15,18 +15,18 @@ function formatDate(){
 
 
 
-// function handlePosition(position) {
-//   let lat = position.coords.latitude;
-//   let lon = position.coords.longitude;
-//   console.log(position);
+function handlePosition(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
 
-//   let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
-//   let units = `metric`;
-//   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-//   axios.get(url).then(displayCurrentData);
-//   axios.get(url).then(displayTemperature);
-//   axios.get(url).then(displayMinMaxTemp);
-// }
+
+  let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
+  let units = `metric`;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+  axios.get(url).then(displayCurrentData);
+  axios.get(url).then(displayTemperature);
+  axios.get(url).then(displayMinMaxTemp);
+}
 
 function displayCurrentData(response) {
   let city = response.data.name;
@@ -136,8 +136,8 @@ let minMaxTemp = document.querySelector(".min-max-temp");
 let weatherDescription = document.querySelector(".current-weather-desc");
 
 let weatherIcon = document.querySelector(".current-weather-icon");
-
-// navigator.geolocation.getCurrentPosition(handlePosition);
+function getCurrentPosition(){
+navigator.geolocation.getCurrentPosition(handlePosition);}
 
 function showMenu() {
   let dropdownList = document.querySelector("#my-dropdown");
@@ -221,5 +221,8 @@ loveIcon.addEventListener("mouseenter", changeIcon);
 
 let lightningIcon = document.querySelector(".copyright");
 lightningIcon.addEventListener("mouseleave", resetIcon);
+
+let currentLocation = document.querySelector("#current-location");
+currentLocation.addEventListener("click", getCurrentPosition);
 
 searchCity(currentCity);
