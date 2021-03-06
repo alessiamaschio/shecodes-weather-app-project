@@ -58,6 +58,10 @@ header {
   max-width: 40%;
 }
 
+img {
+  filter: contrast(200%);
+}
+
 .dropdown {
   position: relative;
   display: inline-block;

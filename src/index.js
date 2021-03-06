@@ -15,21 +15,23 @@ function formatDate(){
 
 
 
-function handlePosition(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
+// function handlePosition(position) {
+//   let lat = position.coords.latitude;
+//   let lon = position.coords.longitude;
+//   console.log(position);
 
-  let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
-  let units = `metric`;
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-  axios.get(url).then(displayCurrentData);
-  axios.get(url).then(displayTemperature);
-  axios.get(url).then(displayMinMaxTemp);
-}
+//   let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
+//   let units = `metric`;
+//   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+//   axios.get(url).then(displayCurrentData);
+//   axios.get(url).then(displayTemperature);
+//   axios.get(url).then(displayMinMaxTemp);
+// }
 
 function displayCurrentData(response) {
   let city = response.data.name;
   cityUpdate.innerHTML = `${city}`;
+   
 
   let weatherDesc = response.data.weather[0].description;
   weatherDescription.innerHTML = `${weatherDesc}`;
@@ -57,8 +59,16 @@ function displayMinMaxTemp(response) {
     return (minMaxTemp.innerHTML = `${minTemp}° / ${maxTemp}°`);
 }
 
-
-function searchCity(event) {
+function searchCity(city) {let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
+      let units = `metric`;
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+      axios.get(url).then(displayCurrentData);
+      axios.get(url).then(displayTemperature);
+    axios.get(url).then(displayMinMaxTemp);
+  celsiusConverter();
+}
+    
+function handleSubmit(event) {
   event.preventDefault();
 
   let input = document.querySelector(".search");
@@ -67,17 +77,12 @@ function searchCity(event) {
   if (currentCity.length === 0 || !isNaN(currentCity)) {
     alert(`Sorry! You need to enter a valid input :)`);
   } else {
-      let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
-      let units = `metric`;
-      let url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${apiKey}&units=${units}`;
-      axios.get(url).then(displayCurrentData);
-      axios.get(url).then(displayTemperature);
-    axios.get(url).then(displayMinMaxTemp);
-        celsiusConverter();
+    
+    searchCity(currentCity);
   }
 }
 
-function searchCityEnter(event) {
+function handleSubmitEnter (event) {
   if (event.key === `Enter`) {
     event.preventDefault();
 
@@ -87,18 +92,15 @@ function searchCityEnter(event) {
     if (currentCity.length === 0 || !isNaN(currentCity)) {
       alert(`Sorry! You need to enter a valid input :)`);
     } else {
-       let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
-        let units = `metric`;
-        let url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${apiKey}&units=${units}`;
-        axios.get(url).then(displayCurrentData);
-        axios.get(url).then(displayTemperature);
-      axios.get(url).then(displayMinMaxTemp);
-      celsiusConverter();
-    }
+    searchCity(currentCity);
+      
+
+    } 
   }
 }
 
-function fahrenheitConverter() {
+function fahrenheitConverter(event) {
+ event.preventDefault();
   let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
   let units = `imperial`;
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${apiKey}&units=${units}`;
@@ -110,7 +112,6 @@ function fahrenheitConverter() {
   celsiusSymbol.classList.add("hide");
   
 }
-
 function celsiusConverter() {
   let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
   let units = `metric`;
@@ -136,7 +137,7 @@ let weatherDescription = document.querySelector(".current-weather-desc");
 
 let weatherIcon = document.querySelector(".current-weather-icon");
 
-navigator.geolocation.getCurrentPosition(handlePosition);
+// navigator.geolocation.getCurrentPosition(handlePosition);
 
 function showMenu() {
   let dropdownList = document.querySelector("#my-dropdown");
@@ -185,7 +186,7 @@ function resetIcon(newIcon) {
 }
       
  
-      
+  
 
 function getPastelColor() {
   let hue = Math.floor(Math.random() * 12 * 30);
@@ -197,7 +198,6 @@ function generateRandomGradient() {
   body.style.background = `linear-gradient(to top,${getPastelColor()},${getPastelColor()})`;
 }
 
-
 let randomBackground = document.querySelector("#random-background-color");
 randomBackground.addEventListener("click", generateRandomGradient);
 
@@ -206,17 +206,20 @@ let fahrenheitSymbol = document.querySelector("#fahrenheit-symbol");
 let celsiusSymbol = document.querySelector("#celsius-symbol");
   
 let currentCity = document.querySelector(".city");
+currentCity = "Madrid";
 
 let cityUpdate = document.querySelector(".city-update");
 
 let searchButton = document.querySelector(".fa-search");
 let enterButton = document.querySelector(".search");
 
-searchButton.addEventListener("click", searchCity);
-enterButton.addEventListener("keydown", searchCityEnter);
+searchButton.addEventListener("click", handleSubmit);
+enterButton.addEventListener("keydown", handleSubmitEnter);
 
 let loveIcon = document.querySelector(".copyright");
 loveIcon.addEventListener("mouseenter", changeIcon);
 
 let lightningIcon = document.querySelector(".copyright");
 lightningIcon.addEventListener("mouseleave", resetIcon);
+
+searchCity(currentCity);
