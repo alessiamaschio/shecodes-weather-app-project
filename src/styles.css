@@ -169,8 +169,8 @@ img {
   font-weight: 300;
 }
 
-.current-date {
-  font-size: 15px;
+.last-updated {
+  font-size: 12px;
   font-weight: normal;
   margin-top: -20px;
   padding-bottom: 20px;

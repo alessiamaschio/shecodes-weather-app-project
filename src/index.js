@@ -1,6 +1,6 @@
-function formatDate(){
-  let currentDay = new Date();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+function formatDate(timestamp){
+  let currentDay = new Date(timestamp);
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   let weekDay = days[currentDay.getDay()];
 
@@ -10,7 +10,7 @@ function formatDate(){
   let minute = (currentDay.getMinutes() < 10 ? "0" : "") + currentDay.getMinutes();
   minute.toLocaleString(undefined, { minute: `2-digit` });
 
-  return `${weekDay.toUpperCase()} ${hour}:${minute}`;
+  return ` Last updated: ${weekDay} ${hour}:${minute}`;
 }
 
 
@@ -31,7 +31,7 @@ function handlePosition(position) {
 function displayCurrentData(response) {
   let city = response.data.name;
   cityUpdate.innerHTML = `${city}`;
-   
+   console.log(response.data)
 
   let weatherDesc = response.data.weather[0].description;
   weatherDescription.innerHTML = `${weatherDesc}`;
@@ -43,8 +43,8 @@ function displayCurrentData(response) {
     );
   weatherIcon.innerHTML = `${icon}`;
 
-  let currentDate = document.querySelector(".current-date");
-  currentDate.innerHTML = formatDate();
+  let lastUpdated = document.querySelector(".last-updated");
+  lastUpdated.innerHTML = formatDate(response.data.dt*1000);
 }
 
 function displayTemperature(response) {
