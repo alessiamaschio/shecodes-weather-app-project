@@ -4,13 +4,9 @@ function formatDate(timestamp){
 
   let weekDay = days[currentDay.getDay()];
 
-  let hour = (currentDay.getHours() < 10 ? "0" : "") + currentDay.getHours();
-  hour.toLocaleString(undefined, { hour: `2-digit` });
+  
 
-  let minute = (currentDay.getMinutes() < 10 ? "0" : "") + currentDay.getMinutes();
-  minute.toLocaleString(undefined, { minute: `2-digit` });
-
-  return ` Last updated: ${weekDay} ${hour}:${minute}`;
+  return ` Last updated: ${weekDay} ${formatHours(timestamp)}`;
 }
 
 
@@ -31,7 +27,7 @@ function handlePosition(position) {
 function displayCurrentData(response) {
   let city = response.data.name;
   cityUpdate.innerHTML = `${city}`;
-   console.log(response.data)
+  
 
   let weatherDesc = response.data.weather[0].description;
   weatherDescription.innerHTML = `${weatherDesc}`;
@@ -59,13 +55,56 @@ function displayMinMaxTemp(response) {
     return (minMaxTemp.innerHTML = `${minTemp}° / ${maxTemp}°`);
 }
 
-function searchCity(city) {let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
+function formatHours(timestamp) {  let currentDay = new Date(timestamp);
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  
+
+  let hour = (currentDay.getHours() < 10 ? "0" : "") + currentDay.getHours();
+  hour.toLocaleString(undefined, { hour: `2-digit` });
+
+  let minute = (currentDay.getMinutes() < 10 ? "0" : "") + currentDay.getMinutes();
+  minute.toLocaleString(undefined, { minute: `2-digit` });
+  return `${hour}:${minute}`;
+}
+
+function displayForecast(response) {
+  let forecastElement = document.querySelector(".forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let i = 0; i < 5; i++) {
+    forecast = response.data.list[i];
+    
+    forecastElement.innerHTML+= ` <li>
+              <ul class="sub-list">
+                <li>${formatHours(forecast.dt*1000)}</li>
+                <li>
+                  <img
+                    src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
+                    alt="Forecast weather icon"
+                    class="forecast-weather-icon"
+                  />
+                </li>
+                <li>${Math.round(forecast.main.temp_min)}° / ${Math.round(forecast.main.temp_max)}°</li>
+              </ul>
+            </li>`; }
+
+  
+
+}
+
+function searchCity(city) {
+      let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
       let units = `metric`;
       let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
       axios.get(url).then(displayCurrentData);
       axios.get(url).then(displayTemperature);
     axios.get(url).then(displayMinMaxTemp);
   celsiusConverter();
+  url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(url).then(displayForecast);
+     
 }
     
 function handleSubmit(event) {
@@ -106,6 +145,8 @@ function fahrenheitConverter(event) {
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${apiKey}&units=${units}`;
   axios.get(url).then(displayTemperature);
   axios.get(url).then(displayMinMaxTemp);
+   let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(urlForecast).then(displayForecast);
 
     fahrenheitSymbol.classList.remove("hide");
   fahrenheitSymbol.classList.add("show-unit");

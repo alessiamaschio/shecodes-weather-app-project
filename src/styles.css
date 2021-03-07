@@ -55,11 +55,7 @@ header {
 
 .current-weather-icon {
   padding: 10px;
-  max-width: 40%;
-}
-
-img {
-  filter: contrast(200%);
+  width: 80px;
 }
 
 .dropdown {
@@ -101,6 +97,7 @@ img {
   width: 20px;
   position: relative;
   top: 5px;
+  filter: contrast(200%);
 }
 
 .background-color-icon {
@@ -251,6 +248,10 @@ img {
 .sub-list:first-child {
   text-transform: uppercase;
   font-size: 14px;
+}
+
+.forecast-weather-icon {
+  width: 40px;
 }
 
 .fas {
