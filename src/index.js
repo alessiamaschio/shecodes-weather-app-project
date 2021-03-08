@@ -1,4 +1,4 @@
-function formatDate(timestamp){
+function formatDate(timestamp) {
   let currentDay = new Date(timestamp);
   let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   let weekDay = days[currentDay.getDay()];
@@ -20,19 +20,19 @@ function handlePosition(position) {
 function displayCurrentData(response) {
   let city = response.data.name;
   cityUpdate.innerHTML = `${city}`;
-  
+
 
   let weatherDesc = response.data.weather[0].description;
   weatherDescription.innerHTML = `${weatherDesc}`;
 
   let iconCode = response.data.weather[0].icon;
   let icon = weatherIcon.setAttribute(
-      `src`,
-      `https://openweathermap.org/img/wn/${iconCode}@2x.png`);
+    `src`,
+    `https://openweathermap.org/img/wn/${iconCode}@2x.png`);
   weatherIcon.innerHTML = `${icon}`;
 
   let lastUpdated = document.querySelector(".last-updated");
-  lastUpdated.innerHTML = formatDate(response.data.dt*1000);
+  lastUpdated.innerHTML = formatDate(response.data.dt * 1000);
 }
 
 function displayTemperature(response) {
@@ -46,7 +46,8 @@ function displayMinMaxTemp(response) {
   return (minMaxTemp.innerHTML = `${minTemp}° / ${maxTemp}°`);
 }
 
-function formatHours(timestamp) {  let currentDay = new Date(timestamp);
+function formatHours(timestamp) {
+  let currentDay = new Date(timestamp);
   let hour = (currentDay.getHours() < 10 ? "0" : "") + currentDay.getHours();
   hour.toLocaleString(undefined, { hour: `2-digit` });
 
@@ -62,10 +63,10 @@ function displayForecast(response) {
 
   for (let i = 0; i < 5; i++) {
     forecast = response.data.list[i];
-    
-    forecastElement.innerHTML+= ` <li>
+
+    forecastElement.innerHTML += ` <li>
               <ul class="sub-list">
-                <li>${formatHours(forecast.dt*1000)}</li>
+                <li>${formatHours(forecast.dt * 1000)}</li>
                 <li>
                   <img
                     src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
@@ -88,9 +89,9 @@ function searchCity(city) {
   axios.get(url).then(displayMinMaxTemp);
   celsiusConverter();
   url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
-  axios.get(url).then(displayForecast);    
+  axios.get(url).then(displayForecast);
 }
-    
+
 function handleSubmit(event) {
   event.preventDefault();
 
@@ -104,7 +105,7 @@ function handleSubmit(event) {
   }
 }
 
-function handleSubmitEnter (event) {
+function handleSubmitEnter(event) {
   if (event.key === `Enter`) {
     event.preventDefault();
 
@@ -114,13 +115,13 @@ function handleSubmitEnter (event) {
     if (currentCity.length === 0 || !isNaN(currentCity)) {
       alert(`Sorry! You need to enter a valid input :)`);
     } else {
-    searchCity(currentCity);
-    } 
+      searchCity(currentCity);
+    }
   }
 }
 
 function fahrenheitConverter(event) {
- event.preventDefault();
+  event.preventDefault();
   let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
   let units = `imperial`;
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${apiKey}&units=${units}`;
@@ -132,7 +133,7 @@ function fahrenheitConverter(event) {
   fahrenheitSymbol.classList.remove("hide");
   fahrenheitSymbol.classList.add("show-unit");
   celsiusSymbol.classList.add("hide");
-  
+
 }
 function celsiusConverter() {
   let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
@@ -147,8 +148,9 @@ function celsiusConverter() {
   celsiusSymbol.classList.add("show-unit");
 }
 
-function getCurrentPosition(){
-navigator.geolocation.getCurrentPosition(handlePosition);}
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(handlePosition);
+}
 
 function showMenu() {
   let dropdownList = document.querySelector("#my-dropdown");
@@ -156,31 +158,31 @@ function showMenu() {
   settingsButton.classList.toggle("change");
 }
 
-window.mouseout = function(event) {
+window.mouseout = function (event) {
   if (!event.target.matches(".settings-container")) {
     let dropdowns = document.getElementsByClassName("dropdown-content");
-    
-   let i;
+
+    let i;
     for (i = 0; i < dropdowns.length; i++) {
-     let openDropdown = dropdowns[i];
+      let openDropdown = dropdowns[i];
       if (openDropdown.classList.contains("show")) {
         openDropdown.classList.remove("show");
-        settingsButton.classList.remove("change");       
+        settingsButton.classList.remove("change");
       }
     }
   }
 }
 
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (!event.target.matches(".settings-container")) {
     let dropdowns = document.getElementsByClassName("dropdown-content");
-    
-   let i;
+
+    let i;
     for (i = 0; i < dropdowns.length; i++) {
-     let openDropdown = dropdowns[i];
+      let openDropdown = dropdowns[i];
       if (openDropdown.classList.contains("show")) {
         openDropdown.classList.remove("show");
-        settingsButton.classList.remove("change");       
+        settingsButton.classList.remove("change");
       }
     }
   }
@@ -203,7 +205,7 @@ function resetIcon(newIcon) {
   >Alessia</a>
   &copy;2021`);
 }
-      
+
 function getPastelColor() {
   let hue = Math.floor(Math.random() * 12 * 30);
   let randomColor = `hsl(${hue}, 70%, 80%)`;
@@ -233,11 +235,13 @@ randomBackground.addEventListener("click", generateRandomGradient);
 
 let settingsButton = document.querySelector(".settings-container");
 settingsButton.addEventListener("mouseenter", showMenu);
+settingsButton.addEventListener("click", showMenu);
+
 
 let body = document.querySelector("body");
 let fahrenheitSymbol = document.querySelector("#fahrenheit-symbol");
 let celsiusSymbol = document.querySelector("#celsius-symbol");
-  
+
 let currentCity = document.querySelector(".city");
 currentCity = "Madrid";
 
