@@ -74,7 +74,7 @@ function displayForecast(response) {
                     class="forecast-weather-icon"
                   />
                 </li>
-                <li>${Math.round(forecast.main.temp_min)}° / ${Math.round(forecast.main.temp_max)}°</li>
+                <li>${Math.round(forecast.main.temp)}°</li>
               </ul>
             </li>`;
   }
