@@ -192,6 +192,17 @@ img {
   font-weight: normal;
 }
 
+.wind-humidity {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.wind-humidity-icon {
+  width: 25px;
+  padding-right: 5px;
+}
+
 .main-list,
 .sub-list {
   list-style: none;

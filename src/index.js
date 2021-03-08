@@ -33,6 +33,12 @@ function displayCurrentData(response) {
 
   let lastUpdated = document.querySelector(".last-updated");
   lastUpdated.innerHTML = formatDate(response.data.dt * 1000);
+
+  let windSpeed = document.querySelector("#wind");
+  windSpeed.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
+  let humidity = document.querySelector("#humidity");
+  humidity.innerHTML = `${Math.round(response.data.main.humidity)}%`;
+
 }
 
 function displayTemperature(response) {
