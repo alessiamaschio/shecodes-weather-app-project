@@ -67,8 +67,6 @@ header {
   display: none;
   position: absolute;
   background-color: rgb(255, 255, 255);
-  /* min-width: 160px; */
-
   width: 200px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -189,38 +187,6 @@ img {
 #fahrenheit-symbol {
   margin-left: -20px;
 }
-/* #celsius,
-#fahrenheit {
-  text-decoration: none;
-  font-size: 20px;
-  color: #525252;
-} */
-
-/* #celsius {
-  padding-right: 15px;
-}
-
-.vertical-line {
-  border-right: 2px solid #000;
-  font-size: 15px;
-}
-
-#celsius:hover {
-  padding: 5px 15px;
-}
-#fahrenheit {
-  padding-left: 10px;
-}
-
-#fahrenheit:hover {
-  padding: 5px 10px;
-}
-
-#celsius:hover,
-#fahrenheit:hover {
-  font-size: 25px;
-  opacity: 0.5;
-} */
 
 .min-max-temp {
   font-weight: normal;
@@ -235,7 +201,6 @@ img {
 .main-list {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
   padding: 40px 10px;
 }
 

@@ -1,20 +1,13 @@
 function formatDate(timestamp){
   let currentDay = new Date(timestamp);
   let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
   let weekDay = days[currentDay.getDay()];
-
-  
-
   return ` Last updated: ${weekDay} ${formatHours(timestamp)}`;
 }
-
-
 
 function handlePosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-
 
   let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
   let units = `metric`;
@@ -35,8 +28,7 @@ function displayCurrentData(response) {
   let iconCode = response.data.weather[0].icon;
   let icon = weatherIcon.setAttribute(
       `src`,
-      `https://openweathermap.org/img/wn/${iconCode}@2x.png`
-    );
+      `https://openweathermap.org/img/wn/${iconCode}@2x.png`);
   weatherIcon.innerHTML = `${icon}`;
 
   let lastUpdated = document.querySelector(".last-updated");
@@ -46,20 +38,15 @@ function displayCurrentData(response) {
 function displayTemperature(response) {
   let currentTemp = Math.round(response.data.main.temp);
   return (temp.innerHTML = `${currentTemp}°`);
-  
 }
 
 function displayMinMaxTemp(response) {
-    let minTemp = Math.round(response.data.main.temp_min);
-    let maxTemp = Math.round(response.data.main.temp_max);
-    return (minMaxTemp.innerHTML = `${minTemp}° / ${maxTemp}°`);
+  let minTemp = Math.round(response.data.main.temp_min);
+  let maxTemp = Math.round(response.data.main.temp_max);
+  return (minMaxTemp.innerHTML = `${minTemp}° / ${maxTemp}°`);
 }
 
 function formatHours(timestamp) {  let currentDay = new Date(timestamp);
-  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-  
-
   let hour = (currentDay.getHours() < 10 ? "0" : "") + currentDay.getHours();
   hour.toLocaleString(undefined, { hour: `2-digit` });
 
@@ -88,23 +75,20 @@ function displayForecast(response) {
                 </li>
                 <li>${Math.round(forecast.main.temp_min)}° / ${Math.round(forecast.main.temp_max)}°</li>
               </ul>
-            </li>`; }
-
-  
-
+            </li>`;
+  }
 }
 
 function searchCity(city) {
-      let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
-      let units = `metric`;
-      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-      axios.get(url).then(displayCurrentData);
-      axios.get(url).then(displayTemperature);
-    axios.get(url).then(displayMinMaxTemp);
+  let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
+  let units = `metric`;
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(url).then(displayCurrentData);
+  axios.get(url).then(displayTemperature);
+  axios.get(url).then(displayMinMaxTemp);
   celsiusConverter();
   url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
-  axios.get(url).then(displayForecast);
-     
+  axios.get(url).then(displayForecast);    
 }
     
 function handleSubmit(event) {
@@ -116,7 +100,6 @@ function handleSubmit(event) {
   if (currentCity.length === 0 || !isNaN(currentCity)) {
     alert(`Sorry! You need to enter a valid input :)`);
   } else {
-    
     searchCity(currentCity);
   }
 }
@@ -132,8 +115,6 @@ function handleSubmitEnter (event) {
       alert(`Sorry! You need to enter a valid input :)`);
     } else {
     searchCity(currentCity);
-      
-
     } 
   }
 }
@@ -145,10 +126,10 @@ function fahrenheitConverter(event) {
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${apiKey}&units=${units}`;
   axios.get(url).then(displayTemperature);
   axios.get(url).then(displayMinMaxTemp);
-   let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${currentCity}&appid=${apiKey}&units=${units}`;
   axios.get(urlForecast).then(displayForecast);
 
-    fahrenheitSymbol.classList.remove("hide");
+  fahrenheitSymbol.classList.remove("hide");
   fahrenheitSymbol.classList.add("show-unit");
   celsiusSymbol.classList.add("hide");
   
@@ -159,24 +140,13 @@ function celsiusConverter() {
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${apiKey}&units=${units}`;
   axios.get(url).then(displayTemperature);
   axios.get(url).then(displayMinMaxTemp);
+  let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${currentCity}&appid=${apiKey}&units=${units}`;
+  axios.get(urlForecast).then(displayForecast);
   fahrenheitSymbol.classList.add("hide");
-   celsiusSymbol.classList.remove("hide");
+  celsiusSymbol.classList.remove("hide");
   celsiusSymbol.classList.add("show-unit");
 }
 
-let fahrenheit = document.querySelector("#fahrenheit");
-fahrenheit.addEventListener("click", fahrenheitConverter);
-
-let celsius = document.querySelector("#celsius");
-celsius.addEventListener("click", celsiusConverter);
-
-let temp = document.querySelector(".temp");
-
-let minMaxTemp = document.querySelector(".min-max-temp");
-
-let weatherDescription = document.querySelector(".current-weather-desc");
-
-let weatherIcon = document.querySelector(".current-weather-icon");
 function getCurrentPosition(){
 navigator.geolocation.getCurrentPosition(handlePosition);}
 
@@ -184,7 +154,21 @@ function showMenu() {
   let dropdownList = document.querySelector("#my-dropdown");
   dropdownList.classList.toggle("show");
   settingsButton.classList.toggle("change");
+}
 
+window.mouseout = function(event) {
+  if (!event.target.matches(".settings-container")) {
+    let dropdowns = document.getElementsByClassName("dropdown-content");
+    
+   let i;
+    for (i = 0; i < dropdowns.length; i++) {
+     let openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains("show")) {
+        openDropdown.classList.remove("show");
+        settingsButton.classList.remove("change");       
+      }
+    }
+  }
 }
 
 window.onclick = function(event) {
@@ -196,17 +180,11 @@ window.onclick = function(event) {
      let openDropdown = dropdowns[i];
       if (openDropdown.classList.contains("show")) {
         openDropdown.classList.remove("show");
-  settingsButton.classList.remove("change");
-       
-       
+        settingsButton.classList.remove("change");       
       }
     }
   }
 }
-
-
-let settingsButton = document.querySelector(".settings-container");
-settingsButton.addEventListener("click", showMenu);
 
 function changeIcon(newIcon) {
   let icon = document.querySelector(".copyright");
@@ -226,9 +204,6 @@ function resetIcon(newIcon) {
   &copy;2021`);
 }
       
- 
-  
-
 function getPastelColor() {
   let hue = Math.floor(Math.random() * 12 * 30);
   let randomColor = `hsl(${hue}, 70%, 80%)`;
@@ -239,8 +214,25 @@ function generateRandomGradient() {
   body.style.background = `linear-gradient(to top,${getPastelColor()},${getPastelColor()})`;
 }
 
+let fahrenheit = document.querySelector("#fahrenheit");
+fahrenheit.addEventListener("click", fahrenheitConverter);
+
+let celsius = document.querySelector("#celsius");
+celsius.addEventListener("click", celsiusConverter);
+
+let temp = document.querySelector(".temp");
+
+let minMaxTemp = document.querySelector(".min-max-temp");
+
+let weatherDescription = document.querySelector(".current-weather-desc");
+
+let weatherIcon = document.querySelector(".current-weather-icon");
+
 let randomBackground = document.querySelector("#random-background-color");
 randomBackground.addEventListener("click", generateRandomGradient);
+
+let settingsButton = document.querySelector(".settings-container");
+settingsButton.addEventListener("mouseenter", showMenu);
 
 let body = document.querySelector("body");
 let fahrenheitSymbol = document.querySelector("#fahrenheit-symbol");
