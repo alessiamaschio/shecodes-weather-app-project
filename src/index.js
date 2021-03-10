@@ -5,6 +5,30 @@ function formatDate(timestamp) {
   return ` Last updated: ${weekDay} ${formatHours(timestamp)}`;
 }
 
+function displayForecast(response) {
+  let forecastElement = document.querySelector(".forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let i = 0; i < 5; i++) {
+    forecast = response.data.list[i];
+
+    forecastElement.innerHTML += ` <li>
+              <ul class="sub-list">
+                <li>${formatHours(forecast.dt * 1000)}</li>
+                <li>
+                  <img
+                    src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
+                    alt="Forecast weather icon"
+                    class="forecast-weather-icon"
+                  />
+                </li>
+                <li>${Math.round(forecast.main.temp)}°</li>
+              </ul>
+            </li>`;
+  }
+}
+
 function handlePosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -15,6 +39,8 @@ function handlePosition(position) {
   axios.get(url).then(displayCurrentData);
   axios.get(url).then(displayTemperature);
   axios.get(url).then(displayMinMaxTemp);
+   url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+  axios.get(url).then(displayForecast);
 }
 
 function displayCurrentData(response) {
@@ -62,29 +88,7 @@ function formatHours(timestamp) {
   return `${hour}:${minute}`;
 }
 
-function displayForecast(response) {
-  let forecastElement = document.querySelector(".forecast");
-  forecastElement.innerHTML = null;
-  let forecast = null;
 
-  for (let i = 0; i < 5; i++) {
-    forecast = response.data.list[i];
-
-    forecastElement.innerHTML += ` <li>
-              <ul class="sub-list">
-                <li>${formatHours(forecast.dt * 1000)}</li>
-                <li>
-                  <img
-                    src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
-                    alt="Forecast weather icon"
-                    class="forecast-weather-icon"
-                  />
-                </li>
-                <li>${Math.round(forecast.main.temp)}°</li>
-              </ul>
-            </li>`;
-  }
-}
 
 function searchCity(city) {
   let apiKey = `bedfbe0fd1980c1b75bd73f4d5db9305`;
